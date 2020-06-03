@@ -1,11 +1,9 @@
-// redux.js
 import {
     createStore,
     compose
 } from 'redux';
 
-import {reducers} from './modules/reducers/reducers'
-
+import {reducers} from "./reducers/reducers";
 // store.js
 export const store = createStore(
     reducers,
