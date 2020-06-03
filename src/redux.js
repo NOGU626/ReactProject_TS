@@ -1,12 +1,18 @@
 // redux.js
 import {
     createStore,
+    compose
 } from 'redux';
 
-import {reducers} from './reducers'
+import {reducers} from './modules/reducers/reducers'
 
 // store.js
-export const store = createStore(reducers)
+export const store = createStore(
+    reducers,
+    compose(
+        process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+);
 
 // storeは巨大なjsonです。storeの中身を取り出すにはgetStateメソッドを使います。
 // エミュレータでcommand + dを押し、enable remote debugをクリックしましょう。

@@ -1,5 +1,5 @@
 import { combineReducers} from 'redux';
-import {deleteName,setName} from './actions';
+import {deleteName,setName} from '../actions/actions';
 // reducers.js
 // reduxではglobal stateを巨大なjson(store)として管理します。stateの変更はjsonの書き換えによってのみ管理します。
 // actionは純粋なjsのオブジェクトを作る関数であることを思い出してください。
@@ -18,6 +18,7 @@ const DELETE_NAME = 'DELETE_NAME' as const;
 
 
 type Actions = ReturnType<typeof deleteName | typeof setName>;
+
 
 const reducer = (state:State | null, action:Actions) => {
     if (!state) return INITIAL_STATE;

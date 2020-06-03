@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import {setName,deleteName} from "./actions";
+import {setName,deleteName} from "./modules/actions/actions";
 
 // function App() {
 //   return (
