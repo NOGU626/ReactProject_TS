@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
+import { connect } from 'react-redux'
+import {setName,deleteName} from "./redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// function App() {
+//   return (
+//     <div className="App">
+//     </div>
+//   );
+// }
+
+// オブジェクトの型定義としてインターフェースを利用
+interface Props {
+  name:string;
 }
 
-export default App;
+interface State {
+  name:string
+}
+
+
+class App extends Component<Props, State> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      name:this.props.name,
+    }
+  }
+
+  render() {
+
+    return (
+        <>
+        <h1>Your name is {this.state.name}</h1>
+        </>
+    )
+  }
+}
+
+
+const mapStateToProps = state => ({
+  // storeは巨大なJsonの塊なので、nameにjsonから取って来たデータを代入している。
+  name: state.user.name
+});
+
+const mapDispatchToProps = {
+  // importしたactionCreatorを記述。
+  setName,
+  deleteName
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
+
